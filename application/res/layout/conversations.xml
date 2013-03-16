@@ -23,8 +23,7 @@ along with Yaaic.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ff000000">
+    android:layout_height="fill_parent">
     <org.yaaic.indicator.ConversationIndicator
         android:id="@+id/titleIndicator"
         android:layout_width="fill_parent"
@@ -47,8 +46,8 @@ along with Yaaic.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="textImeMultiLine"
-            android:textIsSelectable="true"
-            android:imeOptions="actionSend" />
+            android:textIsSelectable="true" />
+            <!--android:imeOptions="actionSend" />-->
         <Button
             android:id="@+id/speech"
             android:layout_width="wrap_content"

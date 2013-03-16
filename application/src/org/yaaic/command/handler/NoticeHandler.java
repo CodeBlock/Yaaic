@@ -51,7 +51,6 @@ public class NoticeHandler extends BaseHandler
             String text = BaseHandler.mergeParams(params);
 
             Message message = new Message(">" + params[1] + "< " + text);
-            message.setIcon(R.drawable.info);
             conversation.addMessage(message);
 
             Intent intent = Broadcast.createConversationIntent(

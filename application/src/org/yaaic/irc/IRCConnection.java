@@ -578,7 +578,6 @@ public class IRCConnection extends PircBot
         }
 
         Message message = new Message("-" + sourceNick + "- " + notice);
-        message.setIcon(R.drawable.info);
         conversation.addMessage(message);
 
         Intent intent = Broadcast.createConversationIntent(

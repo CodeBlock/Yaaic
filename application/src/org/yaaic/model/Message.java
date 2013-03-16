@@ -50,7 +50,7 @@ public class Message
     public static final int COLOR_BLUE    = 0xFF729fcf;
     public static final int COLOR_YELLOW  = 0xFFbe9b01;
     public static final int COLOR_GREY    = 0xFFaaaaaa;
-    public static final int COLOR_DEFAULT = 0xFFeeeeee;
+    public static final int COLOR_DEFAULT = 0xFF333333;
 
     /* normal message, this is the default */
     public static final int TYPE_MESSAGE = 0;
@@ -215,7 +215,7 @@ public class Message
         }
 
         /* we dont want color[colors.length-1] which is black */
-        color = color % (colors.length - 1);
+        color = color % (colors.length);
 
         return colors[color];
     }
