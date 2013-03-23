@@ -53,6 +53,7 @@ import org.yaaic.receiver.ServerReceiver;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -76,6 +77,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -120,6 +123,15 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
 
     private boolean reconnectDialogActive = false;
 
+    private final OnEditorActionListener editorActionListener = new OnEditorActionListener() {
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            Toast.makeText(v.getContext(), "FOOO", Toast.LENGTH_SHORT);
+            sendMessage(v.getText().toString());
+            v.setText("");
+            return true;
+        }
+    };
+
     private final OnKeyListener inputKeyListener = new OnKeyListener() {
         /**
          * On key pressed (input line)
@@ -146,19 +158,6 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
                 if (message != null) {
                     input.setText(message);
                 }
-                return true;
-            }
-
-            if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                sendMessage(input.getText().toString());
-
-                // Workaround for a race condition in EditText
-                // Instead of calling input.setText("");
-                // See:
-                // - https://github.com/pocmo/Yaaic/issues/67
-                // - http://code.google.com/p/android/issues/detail?id=17508
-                TextKeyListener.clear(input.getText());
-
                 return true;
             }
 
@@ -200,6 +199,7 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
 
         EditText input = (EditText) findViewById(R.id.input);
         input.setOnKeyListener(inputKeyListener);
+        input.setOnEditorActionListener(editorActionListener);
 
         pager = (ViewPager) findViewById(R.id.pager);
 
@@ -789,6 +789,7 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
                 CommandParser.getInstance().parse(text, server, conversation, binder.getService());
             }
         }
+        openSoftKeyboard();
     }
 
     /**
@@ -911,7 +912,7 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
             public void run() {
                 // make the softkeyboard come up again (only if no hw keyboard is attached)
                 EditText input = (EditText) findViewById(R.id.input);
-                openSoftKeyboard(input);
+                openSoftKeyboard();
             }
         });
 
@@ -921,8 +922,8 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
     /**
      * Open the soft keyboard (helper function)
      */
-    private void openSoftKeyboard(View view) {
-        ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+    private void openSoftKeyboard() {
+        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     /**
