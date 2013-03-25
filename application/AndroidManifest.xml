@@ -34,7 +34,7 @@ along with Yaaic.  If not, see <http://www.gnu.org/licenses/>.
 
     <application
         android:icon="@drawable/icon"
-        android:label="Yaaic"
+        android:label="Yaaic Fork"
         android:theme="@android:style/Theme.Holo.Light"
         android:allowBackup="true">
         <activity
