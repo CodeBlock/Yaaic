@@ -70,8 +70,11 @@ import android.support.v4.view.ViewPager;
 import android.text.InputType;
 import android.text.method.TextKeyListener;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -197,7 +200,7 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
 
         boolean isLandscape = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
 
-        EditText input = (EditText) findViewById(R.id.input);
+        final EditText input = (EditText) findViewById(R.id.input);
         input.setOnKeyListener(inputKeyListener);
         input.setOnEditorActionListener(editorActionListener);
 
@@ -267,6 +270,23 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
 
         // Create a new scrollback history
         scrollback = new Scrollback();
+
+        input.requestFocus();
+        input.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    keyboard.showSoftInput(input, 0);
+                }
+            },200);
+
+        input.setOnTouchListener(new OnTouchListener() {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(input, 0);
+                return false;
+            }
+        });
     }
 
     /**

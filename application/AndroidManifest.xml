@@ -61,7 +61,7 @@ along with Yaaic.  If not, see <http://www.gnu.org/licenses/>.
         </activity>
         <activity
             android:name=".activity.ConversationActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name=".activity.AboutActivity"
