@@ -370,15 +370,15 @@ public class Message
 
         if (includeSeconds) {
             return String.format(
-                "[%s:%s:%s]",
-                (hours < 10 ? "0" + hours : Integer.toString(hours)),
-                (minutes < 10 ? "0" + minutes : Integer.toString(minutes)),
-                (seconds < 10 ? "0" + seconds : Integer.toString(seconds)));
+                "[%02d:%02d:%02d]",
+                hours,
+                minutes,
+                seconds);
         } else {
             return String.format(
-                "[%s:%s]",
-                (hours < 10 ? "0" + hours : Integer.toString(hours)),
-                (minutes < 10 ? "0" + minutes : Integer.toString(minutes)));
+                "[%02d:%02d]",
+                hours,
+                minutes);
         }
     }
 }
