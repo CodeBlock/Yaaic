@@ -128,9 +128,13 @@ public class ConversationActivity extends SherlockActivity implements ServiceCon
 
     private final OnEditorActionListener editorActionListener = new OnEditorActionListener() {
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            Toast.makeText(v.getContext(), "FOOO", Toast.LENGTH_SHORT);
-            sendMessage(v.getText().toString());
-            v.setText("");
+            switch (actionId) {
+            case EditorInfo.IME_ACTION_SEND:
+                sendMessage(v.getText().toString());
+                v.setText("");
+            case EditorInfo.IME_ACTION_PREVIOUS:
+                doNickCompletion((EditText) v);
+            }
             return true;
         }
     };
