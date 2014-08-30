@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * An identity containing a nickname, an ident and a real name
- * 
+ *
  * @author Sebastian Kaspari <sebastian@yaaic.org>
  */
 public class Identity
@@ -39,7 +39,7 @@ public class Identity
 
     /**
      * Set the nickname of this identity
-     * 
+     *
      * @param nickname The nickname to be set
      */
     public void setNickname(String nickname)
@@ -80,7 +80,7 @@ public class Identity
 
     /**
      * Set the ident of this identity
-     * 
+     *
      * @param ident The ident to be set
      */
     public void setIdent(String ident)
@@ -90,7 +90,7 @@ public class Identity
 
     /**
      * Get the ident of this identity
-     * 
+     *
      * @return The identity
      */
     public String getIdent()
@@ -100,7 +100,7 @@ public class Identity
 
     /**
      * Set the real name of this identity
-     * 
+     *
      * @param realname The real name to be set
      */
     public void setRealName(String realname)
@@ -110,7 +110,7 @@ public class Identity
 
     /**
      * Get the real name of this identity
-     * 
+     *
      * @return The realname
      */
     public String getRealName()
